@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8' />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport' />
+    <title>PJ's Payment Reminder Notification</title>
+    <!-- <meta content='Mikrotik Notification Expired For Hotspot, PPPoE and Static-IP Generator - BuanaNETPBun.Github.io' name='description' /> -->
+    <!-- <meta content='expired, isolation, pppoe, port knocking, knock, script generator, mikrotik, router, winbox, termimal, rsc, script, hotspot, wireless, rtrwnet' name='keywords' /> -->
+    <!-- <meta content='index, follow, noodp' name='robots' /> -->
+    <link rel="shortcut icon" href="https://buananetpbun.github.io/favicon.ico" type="image/x-icon">
+    <!-- <meta property="og:title" content="Mikrotik Notification Expired For Hotspot, PPPoE and Static-IP Generator By BuanaNET-Pbun"> -->
+    <!-- <meta property="og:description" content="Mikrotik Notification Expired For Hotspot, PPPoE and Static-IP Generator By BuanaNET-Pbun"> -->
+    <!-- <meta property="og:image" content="https://user-images.githubusercontent.com/42666125/157741584-46d79b6b-75e8-4f79-8a9d-1b7c8ed5ada2.png"> -->
+    <!-- <meta property="og:image:alt" content="Mikrotik Notification Expired For Hotspot, PPPoE and Static-IP Generator By BuanaNET-Pbun"> -->
+    <!-- <meta property="og:type" content="website"> -->
+    <!-- <meta property="og:url" content="https://buananetpbun.github.io/mikrotik-expired-isolate-pppoe-hotspot.html"> -->
+    
+    <style>
+      /* ---------------------------------------------------------------------
+      ########################################################################
+      # Mikrotik Notification Expired For Hotspot, PPPoE and Static-IP Generator
+      # Designer  : Agus Ramadhani / BuanaNETPbun
+      # github    : https://github.com/buananetpbun
+      # Site      : http://www.o-om.com
+      # Sosmed    : https://fb.me/buananetmikrotik	
+      ########################################################################
+      ------------------------------------------------------------------------ */  
+      *{-webkit-transition: all .3s ease-in;-moz-transition: all .3s ease-in;-ms-transition: all .3s ease-in;transition: all .3s ease-in;}
+      body, div, span, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, textarea, p, blockquote, th, td, tr, table{margin:0; padding:0}
+      body { font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; margin:0px;}
+      html, body {
+      height: 100%;
+      width:100%;
+      margin-top: 0px;
+      padding:0;
+      font-size:16px;
+      background: #292929 url(https://user-images.githubusercontent.com/42666125/147363663-30767ef4-09af-48d6-8ea1-ee7a1c09e90f.png) no-repeat ;  
+      }
+      * {
+      box-sizing: border-box;
+      }
+      .Menu{
+      width:100%;
+      border-bottom:1px solid #ccc;
+      height:100%;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      font-weight:bold;
+      }
+      #wrap{
+      width:1120px;
+      margin:0 auto;
+      padding:10px;
+      }
+      .logo {
+      margin-top:10px;
+      color: #111;
+      text-decoration:none;
+      font-size:27px;
+      font-weight:bold; 
+      }	
+      .logo a{
+      color:#ddd !important;
+      text-decoration:none !important;
+      }
+      .header{
+      height:auto; 
+      width:100%;
+      margin-top:5px;
+      margin-bottom:10px;
+      border-top:1px solid #555;
+      margin-top:5px;
+      }
+      .main-wrap{
+      display:flex;
+      }     
+      .content{
+      flex:1;
+      float:right;
+      width:800px;
+      padding: 10px;
+      border-top:1px solid #bbb;
+      border-bottom:1px solid #bbb;
+      border-right:1px solid #bbb;
+      background:#ddd;
+      height:auto;
+      border-radius: 0 5px 5px 0;
+      }
+      .sidebar{
+      float:left;
+      width:300px;
+      padding: 10px;
+      background-color:#ddd;
+      border:1px solid #bbb; 
+      height:auto;
+      border-radius: 5px 0 0 5px;
+      }
+      .footer{
+      font-size:13px;
+      padding-top:10px;
+      padding-bottom:15px; 
+      clear:both;
+      width:auto;
+      color:#ddd;
+      }
+      h1 {
+      color:#ddd;
+      font-size:24px;
+      margin-bottom:5px;
+      margin-top:10px;
+      }
+      a:link {
+      color: #ff6600;
+      }
+      a:visited {
+      color: #ff6600;
+      }
+      a:hover {
+      color: #ff6600;
+      }
+      a:active {
+      color: #ff6600;
+      }
+      .menu {
+      clear:both;
+      width:auto;
+      padding-bottom:13px;
+      }
+      .menu1 {
+      width:360px;
+      margin-bottom:1px;
+      font-weight:bold;
+      background-color:#4CAF50;
+      padding:6px;
+      color:white;
+      display: inline-block;
+      margin:0;
+      }
+      .menu1 a:link {
+      text-decoration:none;
+      color:white;
+      }
+      .menu1 a:visited{
+      text-decoration:none;
+      color:white;
+      }
+      .menu2 {
+      width:300px;
+      margin-bottom:1px;
+      font-weight:bold;
+      background-color:#bbb;
+      padding:6px;
+      color:white;
+      display: inline-block;
+      margin:0;
+      }
+      .menu2 a:link{
+      text-decoration:none;
+      color:white;
+      }
+      .menu2 a:visited{
+      text-decoration:none;
+      color:white;
+      }
+      button {
+      color: #fff;
+      background-color: #ff6600;
+      border-color: #ff6600;
+      border:none;
+      padding:7px;
+      width:200px;
+      font-size:15px !important;
+      font-weight:bold;
+      cursor: pointer;
+      border-radius: 5px;
+      color: #fff;
+      }
+      button:hover {
+      background-color: #ccc;
+      color: #111;
+      }
+      .d-link {
+      color: #fff;
+      background-color: #fff;
+      border-color: #ff6600;
+      border:none;
+      padding:7px;
+      width:200px;
+      font-size:16px !important;
+      font-weight:bold;
+      cursor: pointer;
+      border-radius: 5px; 
+      }	
+      .d-link:hover {
+      background-color: #ccc;
+      color: #111;
+      }	 
+      .d-link a:link{
+      color: #ff6600;
+      text-decoration:underline;
+      }	
+      .d-link a:visited{
+      color: #ff6600;
+      text-decoration:none;
+      }	
+      .d-link a:hover {
+      color: #ff6600;
+      }
+      .d-link a:active {
+      color: #ff6600;
+      }
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }  
+      input[type=text], select, textarea {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #bbb;
+      border-radius: 1px;
+      resize: vertical;
+      margin-bottom:12px;
+      font-size:16px !important;
+      border-radius: 5px; 
+      }
+      label {
+      padding: 5px 5px 5px 0;
+      display: inline-block;
+      }
+      input[type=submit] {
+      background-color: #ff6600;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 1px;
+      cursor: pointer;
+      float: right;
+      }
+      input[type=submit]:hover {
+      background-color: #45a049;
+      }
+      .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+      }
+      .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+      }
+      /* Clear floats after the columns */
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+      .list-game {
+      height: 200px;
+      background:white;
+      overflow: scroll;
+      overflow-x: hidden;
+      width: 100%;
+      margin-top:2px;
+      padding: 3px;
+      border: 1px solid rgba(0,0,0,0.25);
+      }
+      .list-game label {
+      padding: 0;
+      display: inline-block;
+      } 
+      .list-mangle {
+      height: 300px;
+      background:#fff;
+      overflow: auto;
+      overflow-x: auto;
+      width: 100%;
+      padding: 4px;
+      margin-top:8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      }
+      .list-mangle2 {
+      height: 300px;
+      background-color:#ff6600;
+      overflow: auto;
+      overflow-x: auto;
+      width: 100%;
+      padding: 20px;
+      margin-top:8px;
+      border: 2px solid #fff;
+      color:#fff;
+      font-family: montserrat,sans-serif;
+      border-radius: 5px; 
+      }
+      table, tr, td {
+      border: none;
+      }
+      .mymenu {
+      margin:0 auto;
+      background-color: #f9f9f9;
+      width:600px;
+      border-radius:0 0 5px 5px;
+      border: 2px solid #f9f9f9;
+      font-weight:bold;
+      font-size:14px;
+      }
+      .mymenu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f9f9f9;
+      }
+      .mymenu li {
+      float: left;
+      }
+      .mymenu li a {
+      display: block;
+      color: #555;
+      text-align: center;
+      padding: 8px 10px;
+      text-decoration: none;
+      }
+      .mymenu li a:hover {
+      background-color: #f0f0f0;
+      color: #111;
+      } 
+      /* The Modal (background) */
+      .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 150px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+      }
+      /* Modal Content */
+      .modal-content {
+      line-height:1.4;
+      border-radius: 5px;
+      background: #292929 url(https://user-images.githubusercontent.com/42666125/147363663-30767ef4-09af-48d6-8ea1-ee7a1c09e90f.png) no-repeat top left;
+      color:#ddd;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #444;
+      width: 390px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      font-weight:bold;
+      }
+      .modal-content p {
+      padding:0;
+      margin:5px 5px 0 17px;
+      display:list-item;
+      line-height:2.0;
+      list-style: disc;
+      }
+      /* The Close Button */
+      .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 30px;
+      font-weight: bold;
+      margin-top:-20px;
+      margin-right:-10px;
+      }
+      .close:hover,
+      .close:focus {
+      color: orange;
+      text-decoration: none;
+      cursor: pointer;
+      } 
+    </style>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+          <div class="list-mangle2">
+            <center>
+              <span id="msg-title" style="color:#fff; font-weight:bold; font-size:70px;">EXPIRED!</span><br>
+              <span id="msg-body" style="color:#fff; font-weight:bold; font-size:15px;line-height:2.0">
+              PLEASE BE REMINDED THAT YOUR BILL IS DUE TODAY. TO CONTINUE ENJOYING YOUR INTERNET CONNECTION, PLEASE PAY YOUR BILL TODAY VIA GCASH THROUGH THE ACCOUNT WE PROVIDE. IN ORDER FOR THE INTERNET SERVICE TO REMAIN ACTIVE, IT IS REQUESTED TO MAKE A PAYMENT BEFORE THE DUE DATE OF EACH MONTH. THANK YOU.</span><br><br>
+
+              
+              <span id="msg-contact" style="color:#fff; font-weight:bold; font-size:15px;;line-height:2.0">GCash Number: 09996382901</span><br>
+            </center>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="footer">
+            <center><image src="GCash.jpg" alt="GCash" style="width: 300px;"></image></center>
+      </div>
+    </div>
+    
+  </body>
+</html>
